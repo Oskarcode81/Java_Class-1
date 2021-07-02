@@ -40,6 +40,11 @@ public class App {
         if (respuesta) {
             //bloque de codigo
         }
+        if (respuesta) {
+            //bloque de codigo
+        } else {
+            
+        }
 
 
     }
