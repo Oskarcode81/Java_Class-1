@@ -6,11 +6,13 @@ public class Wallet {
 
     private int saldo;
     private boolean tieneLimite;
+    private int meta;
 
     public Wallet() {
         super();
         saldo = 0;
         tieneLimite = true;
+        meta = 0;
     }
 
     public int getSaldo() { 
@@ -21,15 +23,37 @@ public class Wallet {
         return tieneLimite;
     }
 
+    public boolean establecerMeta(int value) {
+        if (value == 0) {
+            meta = value;
+            return true;
+        }
+        if(value < 0 || value <= saldo || (value > CAPACIDAD_MAXIMA && tieneLimite)) {
+            return false;
+        }
+        meta = value;
+        return true;
+    }
+    
+    
+    public boolean verificarMeta() {
+        if (meta== 0 || meta < meta) {
+            return false;
+
+        }
+            return true;
+    }
     public void setTieneLimite(boolean newTieneLimite) {
         this.tieneLimite = newTieneLimite;
     }
+
 
     public String saveMoney(int value) {
         if (saldo + value > CAPACIDAD_MAXIMA && tieneLimite) {
             return "No se puede superar el limite" + CAPACIDAD_MAXIMA;
         } 
         saldo += value; //saldo = saldo + value;
+        if (verificarMeta()) {System.out.println("Has cumplido la meta");}
         return "Transacción exitosa, nuevo saldo " + saldo;
     }
 
@@ -48,6 +72,18 @@ public class Wallet {
             return "Has roto el limite";
         }
         return "No tiene saldo suficiente";
-        }
     }
+
+
+public String compararCuenta(Wallet otraWallet) {
+    if (saldo == otraWallet.getSaldo()) {
+        return "La primera cuenta es mayor";
+    }
+    if (saldo > otraWallet.getSaldo()) {
+        return "La primera cuenta es mayor";
+    }
+    return "La segunda cuenta es mayor";
+    }
+}
+
 
