@@ -10,7 +10,7 @@ import java.awt.GridLayout;
 public class PanelClientes extends JPanel {
 
     private Interfaz interfaz;
-    private JList<Client> listarClientes;
+    private JList<String> listaClientes;
 
     public PanelClientes(Interfaz Inter) {
         super();
@@ -18,9 +18,21 @@ public class PanelClientes extends JPanel {
         setBorder(new TitledBorder("Clientes"));
         interfaz = Inter;
 
-        String[] nombres = {"Nombre 1", "Nombre 2", "Otro nombre"};
+        // String[] nombres = {"Nombre 1", "Nombre 2", "Otro nombre"};
 
-        listarClientes = new JList<Client>();
+        listaClientes = new JList<>();
+
+        listaClientes.setSize(50, 100);
+
+        add(listaClientes);
     }
+
+    public void updateList(String[] lista) {
+        listaClientes.setListData(lista);
+        
+    }
+
+    
+    
     
 }
